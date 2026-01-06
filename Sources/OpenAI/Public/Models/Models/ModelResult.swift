@@ -37,7 +37,7 @@ public struct ModelResult: Codable, Equatable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let parsingOptions = decoder.userInfo[.parsingOptions] as? ParsingOptions ?? []
         self.id = try container.decode(String.self, forKey: .id)
-        self.created = try container.decodeTimeInterval(forKey: .created, parsingOptions: parsingOptions)
+        self.created = try? container.decodeTimeInterval(forKey: .created, parsingOptions: parsingOptions)
         self.object = try container.decode(String.self, forKey: .object, parsingOptions: parsingOptions, defaultValue: "model")
         self.ownedBy = try container.decode(String.self, forKey: .ownedBy, parsingOptions: parsingOptions, defaultValue: "")
     }
